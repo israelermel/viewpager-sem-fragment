@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="item" type="String"/>
+        <variable name="listener" type="com.example.estudoviewpager.ViewModel.OnItemClickListener"/>
+    </data>
+
+    <TextView
+        android:id="@+id/text"
+        android:onClick="@{() -> listener.onItemClick(item)}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{item}"/>
+</layout>

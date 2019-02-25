@@ -1,41 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/container"
+    <data>
+        <variable name="viewModel" type="com.example.estudoviewpager.ViewModel"/>
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/page_one"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
-            <TextView
-                android:text="PAGE ONE IN"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+            <LinearLayout
+                android:id="@+id/page_one"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="#000"
-                android:textSize="24dp"/>
-        </LinearLayout>
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/page_two"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-            <TextView
-                android:text="PAGE TWO IN"
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    app:items="@{viewModel.items}"
+                    app:itemBinding="@{viewModel.itemBinding}"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/page_two"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="#000"
-                android:textSize="24dp"/>
-        </LinearLayout>
-    </android.support.v4.view.ViewPager>
+                android:orientation="vertical">
 
-</FrameLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    app:items="@{viewModel.items2}"
+                    app:itemBinding="@{viewModel.itemBinding}"/>
+                
+            </LinearLayout>
+        </android.support.v4.view.ViewPager>
+
+    </FrameLayout>
+
+</layout>

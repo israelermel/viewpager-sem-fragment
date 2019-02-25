@@ -1,11 +1,17 @@
 package com.example.estudoviewpager;
 
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.estudoviewpager.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
@@ -14,13 +20,36 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = findViewById(R.id.container);
 
         MyPagerAdapter adapter = new MyPagerAdapter();
         mViewPager.setAdapter(adapter); //set adapter to viewpager.
+
+
+        ViewModel viewModel = new ViewModel(mViewPager);
+
+        ArrayList<String> nomes = new ArrayList<>();
+        nomes.add("Israel1");
+        nomes.add("Israel2");
+        nomes.add("Israel3");
+        nomes.add("Israel4");
+
+        ArrayList<String> nomes1 = new ArrayList<>();
+        nomes1.add("Teste1");
+        nomes1.add("Teste2");
+        nomes1.add("Teste3");
+        nomes1.add("Teste4");
+
+        viewModel.items.addAll(nomes);
+        viewModel.items2.addAll(nomes1);
+
+        binding.setViewModel(viewModel);
+        binding.executePendingBindings();
     }
 
     //Normal pager adapter to handle items inside Viewpager.
